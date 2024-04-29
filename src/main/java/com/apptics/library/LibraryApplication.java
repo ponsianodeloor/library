@@ -3,6 +3,7 @@ package com.apptics.library;
 import com.apptics.library.model.Author;
 import com.apptics.library.model.Book;
 import com.apptics.library.model.Category;
+import com.apptics.library.model.Publisher;
 import com.apptics.library.repository.AuthorRepository;
 import com.apptics.library.repository.BookRepository;
 import com.apptics.library.repository.CategoryRepository;
@@ -31,12 +32,7 @@ public class LibraryApplication {
 	}
 
 	@Bean
-	public CommandLineRunner run(
-			CategoryRepository categoryRepository,
-			AuthorRepository authorRepository,
-			BookRepository bookRepository,
-			PublisherRepository publisherRepository
-	) {
+	public CommandLineRunner run(BookRepository bookRepository) {
 		return (args) -> {
 			Book book = new Book("Java 8", "Libro de Java 8", "123456");
 			Author author = new Author(
@@ -47,8 +43,10 @@ public class LibraryApplication {
 					"Descripcion de Juan Perez"
 			);
 			Category category = new Category("Rust");
+			Publisher publisher = new Publisher("Editorial Jon Warrior");
 			book.getAuthors().add(author);
 			book.getCategories().add(category);
+			book.getPublishers().add(publisher);
 			author.getBooks().add(book);
 			bookRepository.save(book);
 
@@ -61,14 +59,13 @@ public class LibraryApplication {
 					"Descripcion de Pedro Navarrrete"
 			);
 			Category category2 = new Category("Blokchain");
+			Publisher publisher2 = new Publisher("Editorial Levy");
 			book2.getAuthors().add(author2);
 			book2.getCategories().add(category2);
+			book2.getPublishers().add(publisher2);
 			author2.getBooks().add(book2);
 			bookRepository.save(book2);
 		};
 	}
-
-
-
 
 }
