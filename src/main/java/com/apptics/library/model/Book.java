@@ -42,4 +42,10 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "publisher_id"))
     private Set<Publisher> publishers = new HashSet<Publisher>();
+
+    public Book(String title, String description, String isbn) {
+        this.title = title;
+        this.description = description;
+        this.isbn = isbn;
+    }
 }
