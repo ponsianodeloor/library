@@ -1,6 +1,7 @@
 package com.apptics.library.service;
 
 import com.apptics.library.model.Book;
+import com.apptics.library.model.Category;
 import com.apptics.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,13 @@ public class BookService {
 
     public Book updateBook(Book book) {
         return bookRepository.save(book);
+    }
+
+    public List<Book> searchBookByTitle(String title) {
+        return bookRepository.findByTitleContaining(title);
+    }
+
+    public List<Book> getBooksByCategory(Category category) {
+        return bookRepository.findBooksByCategory(category);
     }
 }
