@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Update Publisher</title>
+    <title>Publisher</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -17,14 +17,13 @@
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
-            <form action="#" th:action="@{/save-update-category/{id}(id=${category.id})}" th:object="${category}" method="post">
+            <form action="#" th:action="@{/save-publisher}" th:object="${publisher}" method="post">
                 <div class="row">
                     <div class="form-group col-md-8">
-                        <label for="name" class="col-form-label">Category Name</label>
+                        <label for="name" class="col-form-label">Publisher Name</label>
                         <input type="text" th:field="*{name}" class="form-control" id="name"
-                               placeholder="Book Name"/>
+                               placeholder="publisher Name"/>
                     </div>
-
                     <div class="col-md-6">
                         <input type="submit" class="btn btn-primary" value=" Submit ">
                     </div>
