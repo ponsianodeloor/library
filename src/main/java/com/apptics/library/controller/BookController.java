@@ -78,4 +78,11 @@ public class BookController {
         return "books";
     }
 
+    @GetMapping("/delete-book/{id}")
+    public String deleteBook(@PathVariable Long id, Model model) {
+        bookService.deleteBook(id);
+        model.addAttribute("books", bookService.getAllBooks());
+        return "books";
+    }
+
 }
