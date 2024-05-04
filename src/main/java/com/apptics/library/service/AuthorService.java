@@ -28,8 +28,8 @@ public class AuthorService {
         authorRepository.deleteById(id);
     }
 
-    public void updateAuthor(Author author) {
-        authorRepository.save(author);
+    public Author updateAuthor(Author author) {
+        return authorRepository.save(author);
     }
 
 }
