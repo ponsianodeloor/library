@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Binding;
 import java.util.List;
@@ -56,6 +54,26 @@ public class BookController {
             return "add-book";
         }
         bookService.saveBook(book);
+        model.addAttribute("books", bookService.getAllBooks());
+        return "books";
+    }
+
+    @GetMapping("/update-book/{id}")
+    public String updateBook(@PathVariable Long id, Model model) {
+        Book book = bookService.getBookById(id);
+        model.addAttribute("book", book);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("publishers", publisherService.getAllPublishers());
+        model.addAttribute("authors", authorService.getAllAuthors());
+        return "update-book";
+    }
+
+    @PostMapping("/save-update-book/{id}")
+    public String updateBook(@PathVariable Long id, Book book, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "update-book";
+        }
+        bookService.updateBook(book);
         model.addAttribute("books", bookService.getAllBooks());
         return "books";
     }
