@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
 import java.util.List;
 
 @Controller
@@ -30,14 +29,14 @@ public class BookController {
     public String books(Model model) {
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
-        return "books";
+        return "book/books";
     }
 
     @GetMapping("/book/{id}")
     public String book(Model model, @PathVariable Long id) {
         Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
-        return "book";
+        return "book/book";
     }
 
     @GetMapping("/add-book")
@@ -45,17 +44,17 @@ public class BookController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("authors", authorService.getAllAuthors());
-        return "add-book";
+        return "book/add-book";
     }
 
     @PostMapping("/save-book")
     public String saveBook(Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-book";
+            return "book/add-book";
         }
         bookService.saveBook(book);
         model.addAttribute("books", bookService.getAllBooks());
-        return "books";
+        return "book/books";
     }
 
     @GetMapping("/update-book/{id}")
@@ -65,24 +64,24 @@ public class BookController {
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("publishers", publisherService.getAllPublishers());
         model.addAttribute("authors", authorService.getAllAuthors());
-        return "update-book";
+        return "book/update-book";
     }
 
     @PostMapping("/save-update-book/{id}")
     public String updateBook(@PathVariable Long id, Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "update-book";
+            return "book/update-book";
         }
         bookService.updateBook(book);
         model.addAttribute("books", bookService.getAllBooks());
-        return "books";
+        return "book/books";
     }
 
     @GetMapping("/delete-book/{id}")
     public String deleteBook(@PathVariable Long id, Model model) {
         bookService.deleteBook(id);
         model.addAttribute("books", bookService.getAllBooks());
-        return "books";
+        return "book/books";
     }
 
 }
