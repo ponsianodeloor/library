@@ -12,9 +12,6 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public AuthorService() {
-    }
-
     public List<Author> getAllAuthors() {
         return authorRepository.findAll();
     }
@@ -29,6 +26,10 @@ public class AuthorService {
 
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
+    }
+
+    public Author updateAuthor(Author author) {
+        return authorRepository.save(author);
     }
 
 }

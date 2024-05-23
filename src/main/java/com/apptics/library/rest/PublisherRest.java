@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Author", description = "API para gestion de autores de libros")
+@Tag(name = "Publisher", description = "API para gestion de autores de libros")
 @RestController
 @RequestMapping("/api/v1.0")
 @CrossOrigin(origins = {"*"})
